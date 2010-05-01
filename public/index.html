@@ -10,6 +10,15 @@
   <script src="/js/sales.js"></script>
   <script src="/js/websocket.js"></script>
 
+  <script>
+    $(document).ready(function() {
+      Hummingbird.WebSocket.start();
+      Hummingbird.getSales();
+
+      setInterval(Hummingbird.resortSales, 3000);
+    });
+  </script>
+
   <title>Hummingbird</title>
 
   <link rel="stylesheet" media="all" href="/css/main.css" />
@@ -20,7 +29,7 @@
 
   <div class="hummingbird_graph" id="log">
 
-    <h2><span class="value"></span> Total Pageviews / Second</h2>
+    <h2><span class="value"></span> Pageviews / Second</h2>
 
     <div class="axis_left"></div>
     <canvas width="760" height="216"></canvas>
@@ -32,7 +41,7 @@
 
   <div id="cart_adds" class="hummingbird_graph">
 
-    <h2><span class="value"></span> Total Cart Adds / Second</h2>
+    <h2><span class="value"></span> Cart Adds / Second</h2>
 
     <div class="axis_left"></div>
 
