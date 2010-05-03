@@ -12,9 +12,11 @@ Hummingbird.WebSocket.start = function() {
   totalDiv.find('canvas').get(0).width = $(window).width() - 160;
   var totalGraph = new Hummingbird.Graph(totalDiv, { ratePerSecond: 20, logDate: true });
 
+  /*
   var cartAdds = $("#cart_adds");;
   cartAdds.find('canvas').get(0).width = $(window).width() - 160;
   var cartAddsGraph = new Hummingbird.Graph(cartAdds, { ratePerSecond: 20 });
+  */
 
   if(document.location.search.match(/use_prod/)) {
     var wsServer = "ws://hummingbird.giltrunway.com:8080";
@@ -35,10 +37,12 @@ Hummingbird.WebSocket.start = function() {
       });
     } else if(typeof(data.total) != "undefined") {
       totalGraph.drawLogPath(data.total);
-      if(data.cartAdds) {
-        cartAddsGraph.drawLogPath(data.cartAdds);
-      } else {
-        cartAddsGraph.drawLogPath(0.0);
+      if (cartAddsGraph) {
+        if(data.cartAdds) {
+          cartAddsGraph.drawLogPath(data.cartAdds);
+        } else {
+          cartAddsGraph.drawLogPath(0.0);
+        }
       }
     }
   }
